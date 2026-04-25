@@ -1,22 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>HLS Video Player</title>
+  <title>DASH Player</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.compiled.js"></script>
   <style>
-    body {
-      margin: 0;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+    body { margin:0; background:#000; }
     video {
-      width: 100%;
-      max-width: 900px;
-      height: auto;
-      background: black;
+      width:100%;
+      height:100vh;
+      background:#000;
     }
   </style>
 </head>
@@ -24,25 +17,22 @@
 
 <video id="video" controls autoplay></video>
 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script>
-  var video = document.getElementById('video');
-  var videoSrc = "https://jiotvpllive.cdn.jio.com//bpk-tv/Star_Sports_HD1_BTS/WDVLive/dash/Star_Sports_HD1_BTS-video=4175600-1066273994777.dash?__hdnea__=st=1777122621~exp=1777144221~acl=/bpk-tv/Star_Sports_HD1_BTS/WDVLive/*~hmac=934bae248f443fd14e10af5170629dab79c60daa647a264228fb77d02437c0bb"; // 👈 yaha apna .m3u8 link daalo
+  async function initPlayer() {
+    const video = document.getElementById('video');
+    const player = new shaka.Player(video);
 
-  if (Hls.isSupported()) {
-    var hls = new Hls();
-    hls.loadSource(videoSrc);
-    hls.attachMedia(video);
-    hls.on(Hls.Events.MANIFEST_PARSED, function () {
-      video.play();
-    });
+    const url = "https://jiotvpllive.cdn.jio.com//bpk-tv/Star_Sports_HD1_BTS/WDVLive/dash/Star_Sports_HD1_BTS-video=4175600-1066273994777.dash?__hdnea__=st=1777122621~exp=1777144221~acl=/bpk-tv/Star_Sports_HD1_BTS/WDVLive/*~hmac=934bae248f443fd14e10af5170629dab79c60daa647a264228fb77d02437c0bb"; // 👈 yaha apna DASH (.mpd) link daalo
+
+    try {
+      await player.load(url);
+      console.log("Video loaded");
+    } catch (e) {
+      console.error("Error loading video", e);
+    }
   }
-  else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-    video.src = videoSrc;
-    video.addEventListener('loadedmetadata', function () {
-      video.play();
-    });
-  }
+
+  document.addEventListener('DOMContentLoaded', initPlayer);
 </script>
 
 </body>
