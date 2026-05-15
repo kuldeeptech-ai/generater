@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Advanced HTML Runner | Kuldeep Rai</title>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
-<rect width='100' height='100' rx='18' fill='%230f172a'/>
-<text x='50%' y='58%' font-size='34' text-anchor='middle' fill='white' font-family='Arial'>KR</text>
-</svg>">
+<title>
+HTML Runner Pro
+</title>
 
 <style>
 
 :root{
+
     --bg:#020617;
     --panel:#0f172a;
     --panel2:#111827;
+
     --text:#f8fafc;
-    --border:rgba(255,255,255,.08);
+
+    --border:
+    rgba(255,255,255,.08);
+
     --primary:#3b82f6;
     --success:#22c55e;
     --danger:#ef4444;
@@ -33,48 +38,82 @@
 }
 
 body{
+
+    background:
+    linear-gradient(
+    135deg,
+    #020617,
+    #0f172a,
+    #111827);
+
+    color:white;
+
     font-family:Arial,sans-serif;
-    background:linear-gradient(135deg,#020617,#0f172a,#111827);
-    color:var(--text);
+
     height:100vh;
+
     overflow:hidden;
 }
 
 /* TOPBAR */
 
 .topbar{
+
     width:100%;
-    min-height:70px;
-    background:rgba(15,23,42,.96);
-    border-bottom:1px solid var(--border);
+
+    min-height:72px;
+
+    background:
+    rgba(15,23,42,.95);
+
+    border-bottom:
+    1px solid var(--border);
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
-    padding:15px 18px;
+
     gap:15px;
+
+    padding:14px 18px;
+
     flex-wrap:wrap;
 }
 
 .logo{
+
     display:flex;
+
     align-items:center;
+
     gap:12px;
 }
 
 .logo-box{
-    width:45px;
-    height:45px;
-    border-radius:14px;
-    background:linear-gradient(135deg,#2563eb,#7c3aed);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-    font-size:18px;
-}
 
-.logo h2{
+    width:46px;
+
+    height:46px;
+
+    border-radius:14px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #2563eb,
+    #7c3aed);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
     font-size:18px;
+
+    font-weight:bold;
 }
 
 .logo small{
@@ -84,18 +123,28 @@ body{
 /* BUTTONS */
 
 .actions{
+
     display:flex;
+
     gap:10px;
+
     flex-wrap:wrap;
 }
 
 .btn{
+
     border:none;
+
     padding:11px 18px;
+
     border-radius:12px;
+
     font-size:14px;
+
     font-weight:600;
+
     cursor:pointer;
+
     transition:.25s;
 }
 
@@ -126,107 +175,260 @@ body{
 /* MAIN */
 
 .main{
-    display:flex;
+
     width:100%;
-    height:calc(100vh - 75px);
+
+    height:calc(100vh - 76px);
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:12px;
+
+    padding:12px;
+
+    overflow:hidden;
 }
 
 /* PANELS */
 
-.editor-section,
-.preview-section{
-    flex:1;
+.panel{
+
+    width:100%;
+
+    height:100%;
+
+    min-width:0;
+
+    min-height:0;
+
     display:flex;
+
     flex-direction:column;
+
+    background:#0f172a;
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    border-radius:18px;
+
     overflow:hidden;
 }
 
-.section-header{
-    height:52px;
-    background:rgba(255,255,255,.03);
-    border-bottom:1px solid var(--border);
+/* PANEL HEADER */
+
+.panel-header{
+
+    width:100%;
+
+    min-height:54px;
+
+    background:
+    rgba(255,255,255,.03);
+
+    border-bottom:
+    1px solid rgba(255,255,255,.08);
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
+
     padding:0 15px;
+
     flex-shrink:0;
 }
 
-.section-header h3{
+.panel-header h3{
     font-size:15px;
 }
 
-.stats{
-    display:flex;
-    gap:15px;
-    font-size:13px;
+.panel-status{
+
+    font-size:12px;
+
     color:#94a3b8;
 }
 
 /* EDITOR */
 
-.editor-container{
+.editor-wrap{
+
     flex:1;
+
+    width:100%;
+
+    min-height:0;
+
     overflow:hidden;
+
+    background:#020617;
 }
 
 textarea{
+
     width:100%;
+
     height:100%;
+
+    min-height:100%;
+
     border:none;
+
     outline:none;
+
     resize:none;
+
     background:#020617;
+
     color:#e2e8f0;
+
     padding:18px;
+
     font-size:14px;
+
     line-height:1.7;
+
     font-family:Consolas,monospace;
+
+    overflow:auto;
+
+    white-space:pre;
+
+    display:block;
 }
 
 /* PREVIEW */
 
-iframe{
+.preview-wrap{
+
+    flex:1;
+
     width:100%;
-    height:100%;
-    border:none;
+
+    min-height:0;
+
+    overflow:hidden;
+
     background:white;
+
+    position:relative;
+}
+
+iframe{
+
+    width:100%;
+
+    height:100%;
+
+    min-height:100%;
+
+    border:none;
+
+    background:white;
+
+    display:block;
 }
 
 /* STATUSBAR */
 
 .statusbar{
-    height:38px;
+
+    width:100%;
+
+    min-height:42px;
+
     background:#020617;
-    border-top:1px solid var(--border);
+
+    border-top:
+    1px solid rgba(255,255,255,.08);
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
+
     padding:0 15px;
+
     font-size:12px;
+
     color:#94a3b8;
+
     flex-shrink:0;
+
+    overflow:hidden;
+}
+
+/* RUN STATUS */
+
+.run-status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    min-width:0;
+}
+
+.run-status span{
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+}
+
+.dot{
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:#22c55e;
+
+    box-shadow:
+    0 0 10px #22c55e;
 }
 
 /* FULLSCREEN */
 
 .fullscreen{
+
     position:fixed;
+
     inset:0;
+
     background:black;
+
     z-index:999;
+
     display:none;
+
     flex-direction:column;
 }
 
 .fullscreen-top{
+
     height:60px;
+
     background:#111827;
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
+
     padding:0 15px;
-    flex-shrink:0;
 }
 
 .fullscreen iframe{
@@ -236,46 +438,77 @@ iframe{
 /* DOWNLOAD MODAL */
 
 .download-modal{
+
     position:fixed;
+
     inset:0;
-    background:rgba(0,0,0,.75);
-    backdrop-filter:blur(8px);
+
+    background:
+    rgba(0,0,0,.75);
+
     display:none;
+
     align-items:center;
+
     justify-content:center;
+
     z-index:2000;
+
+    backdrop-filter:blur(8px);
+
     padding:20px;
 }
 
 .download-box{
+
     width:100%;
+
     max-width:420px;
+
     background:#111827;
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:24px;
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    border-radius:22px;
+
     padding:25px;
 }
 
 .download-box h2{
+
     text-align:center;
+
     margin-bottom:20px;
 }
 
 .download-box input{
+
     width:100%;
+
     height:55px;
+
     border:none;
+
     outline:none;
+
     border-radius:14px;
-    padding:0 15px;
+
     background:#020617;
+
     color:white;
-    font-size:16px;
+
+    padding:0 15px;
+
+    font-size:15px;
 }
 
 .download-actions{
+
     display:flex;
+
     gap:12px;
+
     margin-top:20px;
 }
 
@@ -286,16 +519,26 @@ iframe{
 /* TOAST */
 
 .toast{
+
     position:fixed;
+
     right:20px;
+
     bottom:20px;
+
     background:#111827;
-    border:1px solid rgba(255,255,255,.08);
-    color:white;
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
     padding:14px 18px;
+
     border-radius:14px;
+
     transform:translateY(120px);
+
     transition:.35s;
+
     z-index:3000;
 }
 
@@ -312,57 +555,106 @@ iframe{
     }
 
     .main{
-        flex-direction:column;
+
+        grid-template-columns:1fr;
+
         height:auto;
+
+        overflow:auto;
     }
 
-    .editor-section,
-    .preview-section{
-        height:50vh;
+    .panel{
+
+        min-height:520px;
+    }
+
+    .editor-wrap{
+
+        min-height:350px;
+    }
+
+    .preview-wrap{
+
+        min-height:350px;
     }
 
     .actions{
+
         width:100%;
+
         display:grid;
-        grid-template-columns:repeat(2,1fr);
+
+        grid-template-columns:
+        repeat(2,1fr);
     }
 
     .btn{
         width:100%;
     }
 
+    textarea{
+        font-size:13px;
+    }
 }
 
 @media(max-width:500px){
-
-    .topbar{
-        padding:14px;
-    }
-
-    .logo h2{
-        font-size:16px;
-    }
 
     .actions{
         grid-template-columns:1fr;
     }
 
-    .stats{
-        display:none;
+    .main{
+
+        padding:8px;
+
+        gap:8px;
+    }
+
+    .panel{
+
+        min-height:450px;
+
+        border-radius:14px;
+    }
+
+    .editor-wrap{
+
+        min-height:300px;
+    }
+
+    .preview-wrap{
+
+        min-height:300px;
     }
 
     textarea{
-        font-size:13px;
+
         padding:14px;
+
+        font-size:12px;
+
+        line-height:1.6;
     }
 
-    .section-header{
+    .panel-header{
+
         padding:0 10px;
     }
 
+    .statusbar{
+
+        padding:0 10px;
+
+        font-size:11px;
+    }
+
+    .panel-status{
+        display:none;
+    }
 }
 
 </style>
+
 </head>
 
 <body>
@@ -378,28 +670,51 @@ iframe{
         </div>
 
         <div>
-            <h2>Advanced HTML Runner</h2>
-            <small>Created by Kuldeep Rai</small>
+
+            <h2>
+                HTML Runner Pro
+            </h2>
+
+            <small>
+                Created by Kuldeep Rai
+            </small>
+
         </div>
 
     </div>
 
     <div class="actions">
 
-        <button class="btn run" id="runBtn">
+        <button
+        class="btn run"
+        id="runBtn">
+
             ▶ Run
+
         </button>
 
-        <button class="btn save" id="downloadBtn">
+        <button
+        class="btn save"
+        id="downloadBtn">
+
             ⬇ Download
+
         </button>
 
-        <button class="btn full" id="fullscreenBtn">
+        <button
+        class="btn full"
+        id="fullscreenBtn">
+
             ⛶ Fullscreen
+
         </button>
 
-        <button class="btn clear" id="clearBtn">
+        <button
+        class="btn clear"
+        id="clearBtn">
+
             ✖ Clear
+
         </button>
 
     </div>
@@ -410,57 +725,84 @@ iframe{
 
 <div class="main">
 
-    <!-- EDITOR -->
+    <!-- CODE PANEL -->
 
-    <div class="editor-section">
+    <div class="panel">
 
-        <div class="section-header">
+        <div class="panel-header">
 
-            <h3>Code Editor</h3>
+            <h3>
+                Code Editor
+            </h3>
 
-            <div class="stats">
-                <span id="lines">Lines: 0</span>
-                <span id="chars">Characters: 0</span>
+            <div class="panel-status">
+
+                <span id="lines">
+                    Lines: 0
+                </span>
+
+                •
+
+                <span id="chars">
+                    Characters: 0
+                </span>
+
             </div>
 
         </div>
 
-        <div class="editor-container">
+        <div class="editor-wrap">
 
 <textarea id="editor">
 <!DOCTYPE html>
 <html>
-<head>
 
-<title>Advanced Runner</title>
+<head>
 
 <style>
 
 body{
+
     margin:0;
+
     height:100vh;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     background:#0f172a;
+
     color:white;
+
     font-family:Arial;
 }
 
 .card{
+
     background:#1e293b;
+
     padding:40px;
+
     border-radius:20px;
+
     text-align:center;
-    width:300px;
 }
 
 button{
+
     background:#3b82f6;
+
     color:white;
+
     border:none;
+
     padding:12px 20px;
+
     border-radius:10px;
+
     cursor:pointer;
 }
 
@@ -472,9 +814,13 @@ button{
 
 <div class="card">
 
-    <h1>HTML Runner 🚀</h1>
+    <h1>
+        HTML Runner 🚀
+    </h1>
 
-    <p>Live HTML CSS JS Preview</p>
+    <p>
+        Live HTML CSS JS Preview
+    </p>
 
     <button onclick="hello()">
         Click Me
@@ -486,7 +832,9 @@ button{
 
 function hello(){
 
-    alert("Hello Kuldeep 🚀");
+    alert(
+    "Hello Kuldeep 🚀"
+    );
 
 }
 
@@ -500,39 +848,61 @@ function hello(){
 
         <div class="statusbar">
 
+            <div class="run-status">
+
+                <div class="dot"></div>
+
+                <span id="editorStatus">
+                    Editor Ready
+                </span>
+
+            </div>
+
             <span>
                 Auto Save Enabled
-            </span>
-
-            <span id="typingStatus">
-                Ready
             </span>
 
         </div>
 
     </div>
 
-    <!-- PREVIEW -->
+    <!-- PREVIEW PANEL -->
 
-    <div class="preview-section">
+    <div class="panel">
 
-        <div class="section-header">
+        <div class="panel-header">
 
-            <h3>Live Preview</h3>
+            <h3>
+                Live Preview
+            </h3>
 
-            <span>
-                Realtime Rendering
-            </span>
+            <div class="panel-status">
+
+                <span id="previewStatus">
+                    Running
+                </span>
+
+            </div>
 
         </div>
 
-        <iframe id="preview"></iframe>
+        <div class="preview-wrap">
+
+            <iframe id="preview"></iframe>
+
+        </div>
 
         <div class="statusbar">
 
-            <span>
-                Preview Active
-            </span>
+            <div class="run-status">
+
+                <div class="dot"></div>
+
+                <span id="runTime">
+                    Live Preview Active
+                </span>
+
+            </div>
 
             <span id="time"></span>
 
@@ -544,14 +914,21 @@ function hello(){
 
 <!-- FULLSCREEN -->
 
-<div class="fullscreen" id="fullscreen">
+<div class="fullscreen"
+id="fullscreen">
 
     <div class="fullscreen-top">
 
-        <h3>Fullscreen Preview</h3>
+        <h3>
+            Fullscreen Preview
+        </h3>
 
-        <button class="btn clear" id="exitFullscreen">
+        <button
+        class="btn clear"
+        id="exitFullscreen">
+
             Exit
+
         </button>
 
     </div>
@@ -562,27 +939,37 @@ function hello(){
 
 <!-- DOWNLOAD MODAL -->
 
-<div id="downloadModal" class="download-modal">
+<div class="download-modal"
+id="downloadModal">
 
     <div class="download-box">
 
-        <h2>Download File</h2>
+        <h2>
+            Download File
+        </h2>
 
         <input
-            type="text"
-            id="fileNameInput"
-            placeholder="Enter file name"
-            value="index"
-        >
+        type="text"
+        id="fileNameInput"
+        value="index"
+        placeholder="Enter file name">
 
         <div class="download-actions">
 
-            <button id="cancelDownload" class="btn clear">
+            <button
+            class="btn clear"
+            id="cancelDownload">
+
                 Cancel
+
             </button>
 
-            <button id="confirmDownload" class="btn save">
+            <button
+            class="btn save"
+            id="confirmDownload">
+
                 Download
+
             </button>
 
         </div>
@@ -593,96 +980,159 @@ function hello(){
 
 <!-- TOAST -->
 
-<div class="toast" id="toast"></div>
+<div class="toast"
+id="toast"></div>
 
 <script>
 
 /* ELEMENTS */
 
 const editor =
-document.getElementById("editor");
+document.getElementById(
+"editor"
+);
 
 const preview =
-document.getElementById("preview");
+document.getElementById(
+"preview"
+);
 
 const fullPreview =
-document.getElementById("fullPreview");
+document.getElementById(
+"fullPreview"
+);
 
 const runBtn =
-document.getElementById("runBtn");
+document.getElementById(
+"runBtn"
+);
 
 const clearBtn =
-document.getElementById("clearBtn");
+document.getElementById(
+"clearBtn"
+);
 
 const fullscreenBtn =
-document.getElementById("fullscreenBtn");
+document.getElementById(
+"fullscreenBtn"
+);
 
 const exitFullscreen =
-document.getElementById("exitFullscreen");
+document.getElementById(
+"exitFullscreen"
+);
 
 const fullscreen =
-document.getElementById("fullscreen");
+document.getElementById(
+"fullscreen"
+);
 
 const lines =
-document.getElementById("lines");
+document.getElementById(
+"lines"
+);
 
 const chars =
-document.getElementById("chars");
+document.getElementById(
+"chars"
+);
 
 const toast =
-document.getElementById("toast");
+document.getElementById(
+"toast"
+);
+
+const editorStatus =
+document.getElementById(
+"editorStatus"
+);
+
+const previewStatus =
+document.getElementById(
+"previewStatus"
+);
+
+const runTime =
+document.getElementById(
+"runTime"
+);
 
 const downloadBtn =
-document.getElementById("downloadBtn");
+document.getElementById(
+"downloadBtn"
+);
 
 const downloadModal =
-document.getElementById("downloadModal");
+document.getElementById(
+"downloadModal"
+);
 
 const fileNameInput =
-document.getElementById("fileNameInput");
+document.getElementById(
+"fileNameInput"
+);
 
 const confirmDownload =
-document.getElementById("confirmDownload");
+document.getElementById(
+"confirmDownload"
+);
 
 const cancelDownload =
-document.getElementById("cancelDownload");
-
+document.getElementById(
+"cancelDownload"
+);
 
 /* RUN CODE */
 
 function runCode(){
 
-    const code = editor.value;
+    const code =
+    editor.value;
 
-    preview.srcdoc = code;
+    preview.srcdoc =
+    code;
 
-    fullPreview.srcdoc = code;
+    fullPreview.srcdoc =
+    code;
 
+    previewStatus.innerText =
+    "Running Successfully";
+
+    runTime.innerText =
+    "Last Run: " +
+    new Date()
+    .toLocaleTimeString();
+
+    editorStatus.innerText =
+    "Code Executed";
 }
-
 
 /* TOAST */
 
 function showToast(message){
 
-    toast.innerText = message;
+    toast.innerText =
+    message;
 
-    toast.classList.add("show");
+    toast.classList.add(
+    "show"
+    );
 
     setTimeout(()=>{
 
-        toast.classList.remove("show");
+        toast.classList.remove(
+        "show"
+        );
 
     },2000);
-
 }
 
-
-/* UPDATE STATS */
+/* STATS */
 
 function updateStats(){
 
-    const code = editor.value;
+    const code =
+    editor.value;
 
     lines.innerText =
     "Lines: " +
@@ -691,62 +1141,61 @@ function updateStats(){
     chars.innerText =
     "Characters: " +
     code.length;
-
 }
 
-
-/* SAVE TO LOCAL STORAGE */
+/* SAVE */
 
 function saveCode(){
 
     localStorage.setItem(
-        "advanced_html_runner_code",
-        editor.value
+    "runner_pro_code",
+    editor.value
     );
-
 }
 
+/* LOAD */
 
-/* LOAD SAVED CODE */
-
-function loadSavedCode(){
+function loadCode(){
 
     const saved =
     localStorage.getItem(
-        "advanced_html_runner_code"
+    "runner_pro_code"
     );
 
     if(saved){
 
-        editor.value = saved;
-
+        editor.value =
+        saved;
     }
-
 }
 
-
-/* INITIAL LOAD */
+/* INIT */
 
 window.onload = ()=>{
 
-    loadSavedCode();
+    loadCode();
 
     runCode();
 
     updateStats();
-
 };
-
 
 /* AUTO RUN */
 
 let debounce;
 
-editor.addEventListener("input",()=>{
+editor.addEventListener(
+"input",()=>{
 
-    clearTimeout(debounce);
+    clearTimeout(
+    debounce
+    );
 
-    debounce = setTimeout(()=>{
+    editorStatus.innerText =
+    "Typing...";
+
+    debounce =
+    setTimeout(()=>{
 
         runCode();
 
@@ -755,9 +1204,7 @@ editor.addEventListener("input",()=>{
     updateStats();
 
     saveCode();
-
 });
-
 
 /* RUN BUTTON */
 
@@ -765,18 +1212,21 @@ runBtn.onclick = ()=>{
 
     runCode();
 
-    showToast("Preview Updated 🚀");
-
+    showToast(
+    "Preview Updated 🚀"
+    );
 };
 
-
-/* CLEAR BUTTON */
+/* CLEAR */
 
 clearBtn.onclick = ()=>{
 
-    if(confirm("Clear all code?")){
+    if(confirm(
+    "Clear all code?"
+    )){
 
-        editor.value = "";
+        editor.value =
+        "";
 
         runCode();
 
@@ -784,59 +1234,53 @@ clearBtn.onclick = ()=>{
 
         saveCode();
 
-        showToast("Editor Cleared");
-
+        showToast(
+        "Editor Cleared"
+        );
     }
-
 };
-
 
 /* FULLSCREEN */
 
 fullscreenBtn.onclick = ()=>{
 
-    fullscreen.style.display = "flex";
+    fullscreen.style.display =
+    "flex";
 
     fullPreview.srcdoc =
     editor.value;
-
 };
-
 
 exitFullscreen.onclick = ()=>{
 
-    fullscreen.style.display = "none";
-
+    fullscreen.style.display =
+    "none";
 };
 
+/* ESC */
 
-/* ESC CLOSE */
-
-document.addEventListener("keydown",(e)=>{
+document.addEventListener(
+"keydown",(e)=>{
 
     if(e.key === "Escape"){
 
-        fullscreen.style.display = "none";
+        fullscreen.style.display =
+        "none";
 
-        downloadModal.style.display = "none";
-
+        downloadModal.style.display =
+        "none";
     }
-
 });
 
-
-/* OPEN DOWNLOAD MODAL */
+/* DOWNLOAD */
 
 downloadBtn.onclick = ()=>{
 
-    downloadModal.style.display = "flex";
+    downloadModal.style.display =
+    "flex";
 
     fileNameInput.focus();
-
 };
-
-
-/* DOWNLOAD FILE */
 
 confirmDownload.onclick = ()=>{
 
@@ -845,65 +1289,67 @@ confirmDownload.onclick = ()=>{
 
     if(fileName === ""){
 
-        fileName = "index";
-
+        fileName =
+        "index";
     }
 
-    const blob = new Blob(
-        [editor.value],
-        {
-            type:"text/html"
-        }
-    );
+    const blob =
+    new Blob(
+    [editor.value],
+    {
+        type:"text/html"
+    });
 
     const a =
-    document.createElement("a");
+    document.createElement(
+    "a"
+    );
 
     a.href =
-    URL.createObjectURL(blob);
+    URL.createObjectURL(
+    blob
+    );
 
     a.download =
     fileName + ".html";
 
     a.click();
 
-    downloadModal.style.display = "none";
+    downloadModal.style.display =
+    "none";
 
-    showToast("Downloaded Successfully 🚀");
-
+    showToast(
+    "Downloaded Successfully 🚀"
+    );
 };
-
-
-/* CANCEL DOWNLOAD */
 
 cancelDownload.onclick = ()=>{
 
-    downloadModal.style.display = "none";
-
+    downloadModal.style.display =
+    "none";
 };
 
+downloadModal.addEventListener(
+"click",(e)=>{
 
-/* OUTSIDE CLICK CLOSE */
+    if(e.target ===
+    downloadModal){
 
-downloadModal.addEventListener("click",(e)=>{
-
-    if(e.target === downloadModal){
-
-        downloadModal.style.display = "none";
-
+        downloadModal.style.display =
+        "none";
     }
-
 });
 
-
-/* LIVE CLOCK */
+/* CLOCK */
 
 setInterval(()=>{
 
-    const now = new Date();
+    const now =
+    new Date();
 
-    document.getElementById("time")
-    .innerText =
+    document.getElementById(
+    "time"
+    ).innerText =
     now.toLocaleTimeString();
 
 },1000);
