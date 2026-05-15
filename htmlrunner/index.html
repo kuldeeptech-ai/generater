@@ -1,22 +1,23 @@
-<!-- ADVANCED HTML RUNNER - MODERN VERSION -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Advanced HTML Runner | Kuldeep Rai</title>
 
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
 <rect width='100' height='100' rx='18' fill='%230f172a'/>
-<text x='50%' y='56%' font-size='34' text-anchor='middle' fill='white' font-family='Arial'>KR</text>
+<text x='50%' y='58%' font-size='34' text-anchor='middle' fill='white' font-family='Arial'>KR</text>
 </svg>">
 
 <style>
+
 :root{
-    --bg:#0f172a;
-    --panel:#111827;
-    --panel2:#1e293b;
+    --bg:#020617;
+    --panel:#0f172a;
+    --panel2:#111827;
     --text:#f8fafc;
     --border:rgba(255,255,255,.08);
     --primary:#3b82f6;
@@ -32,22 +33,26 @@
 }
 
 body{
-    font-family:Inter,sans-serif;
+    font-family:Arial,sans-serif;
     background:linear-gradient(135deg,#020617,#0f172a,#111827);
     color:var(--text);
     height:100vh;
     overflow:hidden;
 }
 
+/* TOPBAR */
+
 .topbar{
-    height:65px;
-    background:rgba(15,23,42,.95);
-    backdrop-filter:blur(12px);
+    width:100%;
+    min-height:70px;
+    background:rgba(15,23,42,.96);
     border-bottom:1px solid var(--border);
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 18px;
+    padding:15px 18px;
+    gap:15px;
+    flex-wrap:wrap;
 }
 
 .logo{
@@ -57,9 +62,9 @@ body{
 }
 
 .logo-box{
-    width:42px;
-    height:42px;
-    border-radius:12px;
+    width:45px;
+    height:45px;
+    border-radius:14px;
     background:linear-gradient(135deg,#2563eb,#7c3aed);
     display:flex;
     align-items:center;
@@ -72,6 +77,12 @@ body{
     font-size:18px;
 }
 
+.logo small{
+    color:#94a3b8;
+}
+
+/* BUTTONS */
+
 .actions{
     display:flex;
     gap:10px;
@@ -80,8 +91,9 @@ body{
 
 .btn{
     border:none;
-    padding:10px 18px;
+    padding:11px 18px;
     border-radius:12px;
+    font-size:14px;
     font-weight:600;
     cursor:pointer;
     transition:.25s;
@@ -96,13 +108,13 @@ body{
     color:white;
 }
 
-.clear{
-    background:var(--danger);
+.save{
+    background:var(--success);
     color:white;
 }
 
-.save{
-    background:var(--success);
+.clear{
+    background:var(--danger);
     color:white;
 }
 
@@ -111,16 +123,15 @@ body{
     color:black;
 }
 
+/* MAIN */
+
 .main{
     display:flex;
-    height:calc(100vh - 65px);
+    width:100%;
+    height:calc(100vh - 75px);
 }
 
-@media(max-width:900px){
-    .main{
-        flex-direction:column;
-    }
-}
+/* PANELS */
 
 .editor-section,
 .preview-section{
@@ -138,30 +149,42 @@ body{
     align-items:center;
     justify-content:space-between;
     padding:0 15px;
+    flex-shrink:0;
 }
 
 .section-header h3{
     font-size:15px;
 }
 
+.stats{
+    display:flex;
+    gap:15px;
+    font-size:13px;
+    color:#94a3b8;
+}
+
+/* EDITOR */
+
 .editor-container{
     flex:1;
-    position:relative;
+    overflow:hidden;
 }
 
 textarea{
     width:100%;
     height:100%;
-    resize:none;
     border:none;
     outline:none;
+    resize:none;
     background:#020617;
     color:#e2e8f0;
-    padding:20px;
-    font-size:15px;
+    padding:18px;
+    font-size:14px;
     line-height:1.7;
     font-family:Consolas,monospace;
 }
+
+/* PREVIEW */
 
 iframe{
     width:100%;
@@ -170,22 +193,27 @@ iframe{
     background:white;
 }
 
+/* STATUSBAR */
+
 .statusbar{
-    height:36px;
+    height:38px;
     background:#020617;
     border-top:1px solid var(--border);
     display:flex;
     align-items:center;
     justify-content:space-between;
     padding:0 15px;
-    font-size:13px;
+    font-size:12px;
     color:#94a3b8;
+    flex-shrink:0;
 }
+
+/* FULLSCREEN */
 
 .fullscreen{
     position:fixed;
     inset:0;
-    background:#000;
+    background:black;
     z-index:999;
     display:none;
     flex-direction:column;
@@ -198,34 +226,140 @@ iframe{
     align-items:center;
     justify-content:space-between;
     padding:0 15px;
+    flex-shrink:0;
 }
 
 .fullscreen iframe{
     flex:1;
 }
 
-.stats{
-    display:flex;
-    gap:15px;
-    font-size:13px;
+/* DOWNLOAD MODAL */
+
+.download-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(8px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:2000;
+    padding:20px;
 }
+
+.download-box{
+    width:100%;
+    max-width:420px;
+    background:#111827;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:24px;
+    padding:25px;
+}
+
+.download-box h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.download-box input{
+    width:100%;
+    height:55px;
+    border:none;
+    outline:none;
+    border-radius:14px;
+    padding:0 15px;
+    background:#020617;
+    color:white;
+    font-size:16px;
+}
+
+.download-actions{
+    display:flex;
+    gap:12px;
+    margin-top:20px;
+}
+
+.download-actions button{
+    flex:1;
+}
+
+/* TOAST */
 
 .toast{
     position:fixed;
     right:20px;
     bottom:20px;
     background:#111827;
+    border:1px solid rgba(255,255,255,.08);
     color:white;
     padding:14px 18px;
     border-radius:14px;
-    border:1px solid var(--border);
-    transform:translateY(100px);
+    transform:translateY(120px);
     transition:.35s;
-    z-index:1000;
+    z-index:3000;
 }
 
 .toast.show{
     transform:translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    body{
+        overflow:auto;
+    }
+
+    .main{
+        flex-direction:column;
+        height:auto;
+    }
+
+    .editor-section,
+    .preview-section{
+        height:50vh;
+    }
+
+    .actions{
+        width:100%;
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .btn{
+        width:100%;
+    }
+
+}
+
+@media(max-width:500px){
+
+    .topbar{
+        padding:14px;
+    }
+
+    .logo h2{
+        font-size:16px;
+    }
+
+    .actions{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        display:none;
+    }
+
+    textarea{
+        font-size:13px;
+        padding:14px;
+    }
+
+    .section-header{
+        padding:0 10px;
+    }
+
 }
 
 </style>
@@ -233,37 +367,62 @@ iframe{
 
 <body>
 
+<!-- TOPBAR -->
+
 <div class="topbar">
 
     <div class="logo">
-        <div class="logo-box">KR</div>
+
+        <div class="logo-box">
+            KR
+        </div>
+
         <div>
             <h2>Advanced HTML Runner</h2>
             <small>Created by Kuldeep Rai</small>
         </div>
+
     </div>
 
     <div class="actions">
-        <button class="btn run" id="runBtn">▶ Run</button>
-        <button class="btn save" id="downloadBtn">⬇ Download</button>
-        <button class="btn full" id="fullscreenBtn">⛶ Fullscreen</button>
-        <button class="btn clear" id="clearBtn">✖ Clear</button>
+
+        <button class="btn run" id="runBtn">
+            ▶ Run
+        </button>
+
+        <button class="btn save" id="downloadBtn">
+            ⬇ Download
+        </button>
+
+        <button class="btn full" id="fullscreenBtn">
+            ⛶ Fullscreen
+        </button>
+
+        <button class="btn clear" id="clearBtn">
+            ✖ Clear
+        </button>
+
     </div>
 
 </div>
 
+<!-- MAIN -->
+
 <div class="main">
 
     <!-- EDITOR -->
+
     <div class="editor-section">
 
         <div class="section-header">
+
             <h3>Code Editor</h3>
 
             <div class="stats">
                 <span id="lines">Lines: 0</span>
                 <span id="chars">Characters: 0</span>
             </div>
+
         </div>
 
         <div class="editor-container">
@@ -272,18 +431,20 @@ iframe{
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>Advanced Runner</title>
 
 <style>
+
 body{
-    font-family:Arial;
-    background:#0f172a;
-    color:white;
+    margin:0;
+    height:100vh;
     display:flex;
     align-items:center;
     justify-content:center;
-    height:100vh;
-    margin:0;
+    background:#0f172a;
+    color:white;
+    font-family:Arial;
 }
 
 .card{
@@ -291,7 +452,7 @@ body{
     padding:40px;
     border-radius:20px;
     text-align:center;
-    width:320px;
+    width:300px;
 }
 
 button{
@@ -302,6 +463,7 @@ button{
     border-radius:10px;
     cursor:pointer;
 }
+
 </style>
 
 </head>
@@ -309,18 +471,25 @@ button{
 <body>
 
 <div class="card">
-    <h1>Advanced HTML Runner</h1>
+
+    <h1>HTML Runner 🚀</h1>
+
     <p>Live HTML CSS JS Preview</p>
 
     <button onclick="hello()">
         Click Me
     </button>
+
 </div>
 
 <script>
+
 function hello(){
+
     alert("Hello Kuldeep 🚀");
+
 }
+
 </script>
 
 </body>
@@ -330,25 +499,43 @@ function hello(){
         </div>
 
         <div class="statusbar">
-            <span>Auto Save Enabled</span>
-            <span id="typingStatus">Ready</span>
+
+            <span>
+                Auto Save Enabled
+            </span>
+
+            <span id="typingStatus">
+                Ready
+            </span>
+
         </div>
 
     </div>
 
     <!-- PREVIEW -->
+
     <div class="preview-section">
 
         <div class="section-header">
+
             <h3>Live Preview</h3>
-            <span>Realtime Rendering</span>
+
+            <span>
+                Realtime Rendering
+            </span>
+
         </div>
 
         <iframe id="preview"></iframe>
 
         <div class="statusbar">
-            <span>Preview Active</span>
+
+            <span>
+                Preview Active
+            </span>
+
             <span id="time"></span>
+
         </div>
 
     </div>
@@ -356,97 +543,203 @@ function hello(){
 </div>
 
 <!-- FULLSCREEN -->
+
 <div class="fullscreen" id="fullscreen">
 
     <div class="fullscreen-top">
+
         <h3>Fullscreen Preview</h3>
 
         <button class="btn clear" id="exitFullscreen">
             Exit
         </button>
+
     </div>
 
     <iframe id="fullPreview"></iframe>
 
 </div>
 
+<!-- DOWNLOAD MODAL -->
+
+<div id="downloadModal" class="download-modal">
+
+    <div class="download-box">
+
+        <h2>Download File</h2>
+
+        <input
+            type="text"
+            id="fileNameInput"
+            placeholder="Enter file name"
+            value="index"
+        >
+
+        <div class="download-actions">
+
+            <button id="cancelDownload" class="btn clear">
+                Cancel
+            </button>
+
+            <button id="confirmDownload" class="btn save">
+                Download
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
 <!-- TOAST -->
+
 <div class="toast" id="toast"></div>
 
 <script>
 
-const editor = document.getElementById("editor");
-const preview = document.getElementById("preview");
-const fullPreview = document.getElementById("fullPreview");
+/* ELEMENTS */
 
-const runBtn = document.getElementById("runBtn");
-const clearBtn = document.getElementById("clearBtn");
-const fullscreenBtn = document.getElementById("fullscreenBtn");
-const exitFullscreen = document.getElementById("exitFullscreen");
-const fullscreen = document.getElementById("fullscreen");
-const downloadBtn = document.getElementById("downloadBtn");
+const editor =
+document.getElementById("editor");
 
-const lines = document.getElementById("lines");
-const chars = document.getElementById("chars");
-const toast = document.getElementById("toast");
+const preview =
+document.getElementById("preview");
+
+const fullPreview =
+document.getElementById("fullPreview");
+
+const runBtn =
+document.getElementById("runBtn");
+
+const clearBtn =
+document.getElementById("clearBtn");
+
+const fullscreenBtn =
+document.getElementById("fullscreenBtn");
+
+const exitFullscreen =
+document.getElementById("exitFullscreen");
+
+const fullscreen =
+document.getElementById("fullscreen");
+
+const lines =
+document.getElementById("lines");
+
+const chars =
+document.getElementById("chars");
+
+const toast =
+document.getElementById("toast");
+
+const downloadBtn =
+document.getElementById("downloadBtn");
+
+const downloadModal =
+document.getElementById("downloadModal");
+
+const fileNameInput =
+document.getElementById("fileNameInput");
+
+const confirmDownload =
+document.getElementById("confirmDownload");
+
+const cancelDownload =
+document.getElementById("cancelDownload");
 
 
-// RUN CODE
+/* RUN CODE */
+
 function runCode(){
 
     const code = editor.value;
 
     preview.srcdoc = code;
+
     fullPreview.srcdoc = code;
 
-    localStorage.setItem("advanced_runner_code", code);
-
-    showToast("Preview Updated 🚀");
 }
 
 
-// TOAST
-function showToast(msg){
+/* TOAST */
 
-    toast.innerText = msg;
+function showToast(message){
+
+    toast.innerText = message;
 
     toast.classList.add("show");
 
     setTimeout(()=>{
+
         toast.classList.remove("show");
+
     },2000);
+
 }
 
 
-// STATS
+/* UPDATE STATS */
+
 function updateStats(){
 
     const code = editor.value;
 
     lines.innerText =
-    "Lines: " + code.split("\n").length;
+    "Lines: " +
+    code.split("\n").length;
 
     chars.innerText =
-    "Characters: " + code.length;
+    "Characters: " +
+    code.length;
+
 }
 
 
-// AUTOSAVE LOAD
-window.onload = ()=>{
+/* SAVE TO LOCAL STORAGE */
+
+function saveCode(){
+
+    localStorage.setItem(
+        "advanced_html_runner_code",
+        editor.value
+    );
+
+}
+
+
+/* LOAD SAVED CODE */
+
+function loadSavedCode(){
 
     const saved =
-    localStorage.getItem("advanced_runner_code");
+    localStorage.getItem(
+        "advanced_html_runner_code"
+    );
 
     if(saved){
+
         editor.value = saved;
+
     }
 
+}
+
+
+/* INITIAL LOAD */
+
+window.onload = ()=>{
+
+    loadSavedCode();
+
     runCode();
+
     updateStats();
+
 };
 
 
-// AUTO RUN
+/* AUTO RUN */
+
 let debounce;
 
 editor.addEventListener("input",()=>{
@@ -460,11 +753,24 @@ editor.addEventListener("input",()=>{
     },700);
 
     updateStats();
+
+    saveCode();
+
 });
 
 
-// BUTTONS
-runBtn.onclick = runCode;
+/* RUN BUTTON */
+
+runBtn.onclick = ()=>{
+
+    runCode();
+
+    showToast("Preview Updated 🚀");
+
+};
+
+
+/* CLEAR BUTTON */
 
 clearBtn.onclick = ()=>{
 
@@ -476,55 +782,122 @@ clearBtn.onclick = ()=>{
 
         updateStats();
 
+        saveCode();
+
         showToast("Editor Cleared");
+
     }
+
 };
 
 
-// FULLSCREEN
+/* FULLSCREEN */
+
 fullscreenBtn.onclick = ()=>{
 
     fullscreen.style.display = "flex";
 
-    fullPreview.srcdoc = editor.value;
+    fullPreview.srcdoc =
+    editor.value;
+
 };
+
 
 exitFullscreen.onclick = ()=>{
 
     fullscreen.style.display = "none";
+
 };
 
 
-// ESC CLOSE
+/* ESC CLOSE */
+
 document.addEventListener("keydown",(e)=>{
 
     if(e.key === "Escape"){
+
         fullscreen.style.display = "none";
+
+        downloadModal.style.display = "none";
+
     }
+
 });
 
 
-// DOWNLOAD
+/* OPEN DOWNLOAD MODAL */
+
 downloadBtn.onclick = ()=>{
 
-    const blob = new Blob(
-        [editor.value],
-        {type:"text/html"}
-    );
+    downloadModal.style.display = "flex";
 
-    const a = document.createElement("a");
+    fileNameInput.focus();
 
-    a.href = URL.createObjectURL(blob);
-
-    a.download = "index.html";
-
-    a.click();
-
-    showToast("HTML Downloaded");
 };
 
 
-// CLOCK
+/* DOWNLOAD FILE */
+
+confirmDownload.onclick = ()=>{
+
+    let fileName =
+    fileNameInput.value.trim();
+
+    if(fileName === ""){
+
+        fileName = "index";
+
+    }
+
+    const blob = new Blob(
+        [editor.value],
+        {
+            type:"text/html"
+        }
+    );
+
+    const a =
+    document.createElement("a");
+
+    a.href =
+    URL.createObjectURL(blob);
+
+    a.download =
+    fileName + ".html";
+
+    a.click();
+
+    downloadModal.style.display = "none";
+
+    showToast("Downloaded Successfully 🚀");
+
+};
+
+
+/* CANCEL DOWNLOAD */
+
+cancelDownload.onclick = ()=>{
+
+    downloadModal.style.display = "none";
+
+};
+
+
+/* OUTSIDE CLICK CLOSE */
+
+downloadModal.addEventListener("click",(e)=>{
+
+    if(e.target === downloadModal){
+
+        downloadModal.style.display = "none";
+
+    }
+
+});
+
+
+/* LIVE CLOCK */
+
 setInterval(()=>{
 
     const now = new Date();
