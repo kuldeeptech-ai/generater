@@ -1,376 +1,541 @@
+<!-- ADVANCED HTML RUNNER - MODERN VERSION -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Runner | Live Code Editor</title>
-    
-    <!-- Custom Favicon -->
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%234a6ee0'/><text x='50%' y='45%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='12' fill='white'>BM</text><text x='50%' y='65%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='8' fill='white'>MACAO</text></svg>">
-    
-    <!-- Robots.txt -->
-    <meta name="robots" content="index, follow">
-    
-    <style>
-        :root {
-            --primary-color: #4a6ee0;
-            --secondary-color: #6c757d;
-            --dark-color: #343a40;
-            --light-color: #f8f9fa;
-            --success-color: #28a745;
-            --danger-color: #dc3545;
-            --border-radius: 4px;
-            --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f7fa;
-            color: var(--dark-color);
-            line-height: 1.6;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .container {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            padding: 10px;
-            gap: 10px;
-        }
-        
-        @media (min-width: 768px) {
-            .container {
-                flex-direction: row;
-            }
-        }
-        
-        .editor-panel, .preview-panel {
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .editor-panel {
-            flex: 1;
-        }
-        
-        .preview-panel {
-            flex: 1;
-        }
-        
-        .panel-header {
-            padding: 12px 15px;
-            background: var(--dark-color);
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .panel-title {
-            font-weight: 600;
-            font-size: 1rem;
-        }
-        
-        .btn {
-            padding: 6px 12px;
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary {
-            background: var(--primary-color);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: #3a5bc7;
-        }
-        
-        .btn-success {
-            background: var(--success-color);
-            color: white;
-        }
-        
-        .btn-success:hover {
-            background: #218838;
-        }
-        
-        .btn-danger {
-            background: var(--danger-color);
-            color: white;
-        }
-        
-        .btn-danger:hover {
-            background: #c82333;
-        }
-        
-        .editor {
-            width: 100%;
-            height: 100%;
-            padding: 15px;
-            border: none;
-            resize: none;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            line-height: 1.5;
-            background: #f8f9fa;
-            color: var(--dark-color);
-        }
-        
-        .preview {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background: white;
-        }
-        
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            padding: 10px;
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            flex-wrap: wrap;
-        }
-        
-        .fullscreen-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            z-index: 1000;
-            display: none;
-            flex-direction: column;
-        }
-        
-        .fullscreen-header {
-            padding: 12px 15px;
-            background: var(--dark-color);
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .fullscreen-preview {
-            flex: 1;
-            width: 100%;
-            border: none;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Advanced HTML Runner | Kuldeep Rai</title>
 
-        .brand-footer {
-            text-align: center;
-            padding: 10px;
-            color: var(--secondary-color);
-            font-size: 0.9rem;
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            margin: 10px;
-        }
-    </style>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+<rect width='100' height='100' rx='18' fill='%230f172a'/>
+<text x='50%' y='56%' font-size='34' text-anchor='middle' fill='white' font-family='Arial'>KR</text>
+</svg>">
+
+<style>
+:root{
+    --bg:#0f172a;
+    --panel:#111827;
+    --panel2:#1e293b;
+    --text:#f8fafc;
+    --border:rgba(255,255,255,.08);
+    --primary:#3b82f6;
+    --success:#22c55e;
+    --danger:#ef4444;
+    --warning:#f59e0b;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Inter,sans-serif;
+    background:linear-gradient(135deg,#020617,#0f172a,#111827);
+    color:var(--text);
+    height:100vh;
+    overflow:hidden;
+}
+
+.topbar{
+    height:65px;
+    background:rgba(15,23,42,.95);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 18px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-box{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    font-size:18px;
+}
+
+.logo h2{
+    font-size:18px;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:none;
+    padding:10px 18px;
+    border-radius:12px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.run{
+    background:var(--primary);
+    color:white;
+}
+
+.clear{
+    background:var(--danger);
+    color:white;
+}
+
+.save{
+    background:var(--success);
+    color:white;
+}
+
+.full{
+    background:var(--warning);
+    color:black;
+}
+
+.main{
+    display:flex;
+    height:calc(100vh - 65px);
+}
+
+@media(max-width:900px){
+    .main{
+        flex-direction:column;
+    }
+}
+
+.editor-section,
+.preview-section{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+.section-header{
+    height:52px;
+    background:rgba(255,255,255,.03);
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 15px;
+}
+
+.section-header h3{
+    font-size:15px;
+}
+
+.editor-container{
+    flex:1;
+    position:relative;
+}
+
+textarea{
+    width:100%;
+    height:100%;
+    resize:none;
+    border:none;
+    outline:none;
+    background:#020617;
+    color:#e2e8f0;
+    padding:20px;
+    font-size:15px;
+    line-height:1.7;
+    font-family:Consolas,monospace;
+}
+
+iframe{
+    width:100%;
+    height:100%;
+    border:none;
+    background:white;
+}
+
+.statusbar{
+    height:36px;
+    background:#020617;
+    border-top:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 15px;
+    font-size:13px;
+    color:#94a3b8;
+}
+
+.fullscreen{
+    position:fixed;
+    inset:0;
+    background:#000;
+    z-index:999;
+    display:none;
+    flex-direction:column;
+}
+
+.fullscreen-top{
+    height:60px;
+    background:#111827;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 15px;
+}
+
+.fullscreen iframe{
+    flex:1;
+}
+
+.stats{
+    display:flex;
+    gap:15px;
+    font-size:13px;
+}
+
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#111827;
+    color:white;
+    padding:14px 18px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    transform:translateY(100px);
+    transition:.35s;
+    z-index:1000;
+}
+
+.toast.show{
+    transform:translateY(0);
+}
+
+</style>
 </head>
+
 <body>
-    <div class="controls">
-        <button id="runBtn" class="btn btn-primary">Run Code</button>
-        <button id="clearBtn" class="btn btn-danger">Clear</button>
-        <button id="fullscreenBtn" class="btn btn-success">Fullscreen Preview</button>
+
+<div class="topbar">
+
+    <div class="logo">
+        <div class="logo-box">KR</div>
+        <div>
+            <h2>Advanced HTML Runner</h2>
+            <small>Created by Kuldeep Rai</small>
+        </div>
     </div>
-    
-    <div class="container">
-        <div class="editor-panel">
-            <div class="panel-header">
-                <div class="panel-title">Code Editor</div>
+
+    <div class="actions">
+        <button class="btn run" id="runBtn">▶ Run</button>
+        <button class="btn save" id="downloadBtn">⬇ Download</button>
+        <button class="btn full" id="fullscreenBtn">⛶ Fullscreen</button>
+        <button class="btn clear" id="clearBtn">✖ Clear</button>
+    </div>
+
+</div>
+
+<div class="main">
+
+    <!-- EDITOR -->
+    <div class="editor-section">
+
+        <div class="section-header">
+            <h3>Code Editor</h3>
+
+            <div class="stats">
+                <span id="lines">Lines: 0</span>
+                <span id="chars">Characters: 0</span>
             </div>
-            <textarea id="codeEditor" class="editor" placeholder="Write your HTML, CSS, and JavaScript code here...">
+        </div>
+
+        <div class="editor-container">
+
+<textarea id="editor">
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f0f2f5;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #4a6ee0;
-            text-align: center;
-        }
-        .card {
-            background: #f8f9fa;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 6px;
-            border-left: 4px solid #4a6ee0;
-        }
-        button {
-            background: #4a6ee0;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #3a5bc7;
-        }
-    </style>
+<title>Advanced Runner</title>
+
+<style>
+body{
+    font-family:Arial;
+    background:#0f172a;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+    margin:0;
+}
+
+.card{
+    background:#1e293b;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    width:320px;
+}
+
+button{
+    background:#3b82f6;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:10px;
+    cursor:pointer;
+}
+</style>
+
 </head>
+
 <body>
-    <div class="container">
-        <h1>Welcome to HTML Runner</h1>
-        <p>This is a live preview of your HTML code. Edit the code on the left to see changes here.</p>
-        
-        <div class="card">
-            <h3>Feature Card</h3>
-            <p>This is a sample card component. You can modify the code to create your own designs.</p>
-            <button onclick="showAlert()">Click Me</button>
-        </div>
-        
-        <div class="card">
-            <h3>Responsive Design</h3>
-            <p>This editor is fully responsive and works on all devices - from mobile phones to desktop computers.</p>
-        </div>
-    </div>
-    
-    <script>
-        function showAlert() {
-            alert('Hello! This is a JavaScript function triggered by the button click.');
-        }
-        
-        console.log('HTML Runner is working!');
-    </script>
+
+<div class="card">
+    <h1>Advanced HTML Runner</h1>
+    <p>Live HTML CSS JS Preview</p>
+
+    <button onclick="hello()">
+        Click Me
+    </button>
+</div>
+
+<script>
+function hello(){
+    alert("Hello Kuldeep 🚀");
+}
+</script>
+
 </body>
 </html>
-            </textarea>
+</textarea>
+
         </div>
-        
-        <div class="preview-panel">
-            <div class="panel-header">
-                <div class="panel-title">Live Preview</div>
-            </div>
-            <iframe id="preview" class="preview"></iframe>
+
+        <div class="statusbar">
+            <span>Auto Save Enabled</span>
+            <span id="typingStatus">Ready</span>
         </div>
-    </div>
-    
-    <div class="brand-footer">
-        Created by Kuldeep RAi
-    </div>
-    
-    <div id="fullscreenOverlay" class="fullscreen-overlay">
-        <div class="fullscreen-header">
-            <div class="panel-title">Fullscreen Preview</div>
-            <button id="exitFullscreenBtn" class="btn btn-danger">Exit Fullscreen</button>
-        </div>
-        <iframe id="fullscreenPreview" class="fullscreen-preview"></iframe>
+
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const codeEditor = document.getElementById('codeEditor');
-            const preview = document.getElementById('preview');
-            const fullscreenPreview = document.getElementById('fullscreenPreview');
-            const runBtn = document.getElementById('runBtn');
-            const clearBtn = document.getElementById('clearBtn');
-            const fullscreenBtn = document.getElementById('fullscreenBtn');
-            const fullscreenOverlay = document.getElementById('fullscreenOverlay');
-            const exitFullscreenBtn = document.getElementById('exitFullscreenBtn');
-            
-            // Initial run
-            updatePreview();
-            
-            // Run code button
-            runBtn.addEventListener('click', updatePreview);
-            
-            // Clear code button
-            clearBtn.addEventListener('click', function() {
-                if (confirm('Are you sure you want to clear the editor?')) {
-                    codeEditor.value = '';
-                    updatePreview();
-                }
-            });
-            
-            // Fullscreen preview button
-            fullscreenBtn.addEventListener('click', function() {
-                fullscreenOverlay.style.display = 'flex';
-                updateFullscreenPreview();
-            });
-            
-            // Exit fullscreen button
-            exitFullscreenBtn.addEventListener('click', function() {
-                fullscreenOverlay.style.display = 'none';
-            });
-            
-            // Update preview function
-            function updatePreview() {
-                const code = codeEditor.value;
-                const previewDocument = preview.contentDocument || preview.contentWindow.document;
-                
-                previewDocument.open();
-                previewDocument.write(code);
-                previewDocument.close();
-            }
-            
-            // Update fullscreen preview function
-            function updateFullscreenPreview() {
-                const code = codeEditor.value;
-                const fullscreenDocument = fullscreenPreview.contentDocument || fullscreenPreview.contentWindow.document;
-                
-                fullscreenDocument.open();
-                fullscreenDocument.write(code);
-                fullscreenDocument.close();
-            }
-            
-            // Auto-run on code change (with debounce)
-            let timeout;
-            codeEditor.addEventListener('input', function() {
-                clearTimeout(timeout);
-                timeout = setTimeout(function() {
-                    updatePreview();
-                    if (fullscreenOverlay.style.display === 'flex') {
-                        updateFullscreenPreview();
-                    }
-                }, 1000);
-            });
-            
-            // Exit fullscreen with Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && fullscreenOverlay.style.display === 'flex') {
-                    fullscreenOverlay.style.display = 'none';
-                }
-            });
-        });
-    </script>
+    <!-- PREVIEW -->
+    <div class="preview-section">
+
+        <div class="section-header">
+            <h3>Live Preview</h3>
+            <span>Realtime Rendering</span>
+        </div>
+
+        <iframe id="preview"></iframe>
+
+        <div class="statusbar">
+            <span>Preview Active</span>
+            <span id="time"></span>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FULLSCREEN -->
+<div class="fullscreen" id="fullscreen">
+
+    <div class="fullscreen-top">
+        <h3>Fullscreen Preview</h3>
+
+        <button class="btn clear" id="exitFullscreen">
+            Exit
+        </button>
+    </div>
+
+    <iframe id="fullPreview"></iframe>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+
+const editor = document.getElementById("editor");
+const preview = document.getElementById("preview");
+const fullPreview = document.getElementById("fullPreview");
+
+const runBtn = document.getElementById("runBtn");
+const clearBtn = document.getElementById("clearBtn");
+const fullscreenBtn = document.getElementById("fullscreenBtn");
+const exitFullscreen = document.getElementById("exitFullscreen");
+const fullscreen = document.getElementById("fullscreen");
+const downloadBtn = document.getElementById("downloadBtn");
+
+const lines = document.getElementById("lines");
+const chars = document.getElementById("chars");
+const toast = document.getElementById("toast");
+
+
+// RUN CODE
+function runCode(){
+
+    const code = editor.value;
+
+    preview.srcdoc = code;
+    fullPreview.srcdoc = code;
+
+    localStorage.setItem("advanced_runner_code", code);
+
+    showToast("Preview Updated 🚀");
+}
+
+
+// TOAST
+function showToast(msg){
+
+    toast.innerText = msg;
+
+    toast.classList.add("show");
+
+    setTimeout(()=>{
+        toast.classList.remove("show");
+    },2000);
+}
+
+
+// STATS
+function updateStats(){
+
+    const code = editor.value;
+
+    lines.innerText =
+    "Lines: " + code.split("\n").length;
+
+    chars.innerText =
+    "Characters: " + code.length;
+}
+
+
+// AUTOSAVE LOAD
+window.onload = ()=>{
+
+    const saved =
+    localStorage.getItem("advanced_runner_code");
+
+    if(saved){
+        editor.value = saved;
+    }
+
+    runCode();
+    updateStats();
+};
+
+
+// AUTO RUN
+let debounce;
+
+editor.addEventListener("input",()=>{
+
+    clearTimeout(debounce);
+
+    debounce = setTimeout(()=>{
+
+        runCode();
+
+    },700);
+
+    updateStats();
+});
+
+
+// BUTTONS
+runBtn.onclick = runCode;
+
+clearBtn.onclick = ()=>{
+
+    if(confirm("Clear all code?")){
+
+        editor.value = "";
+
+        runCode();
+
+        updateStats();
+
+        showToast("Editor Cleared");
+    }
+};
+
+
+// FULLSCREEN
+fullscreenBtn.onclick = ()=>{
+
+    fullscreen.style.display = "flex";
+
+    fullPreview.srcdoc = editor.value;
+};
+
+exitFullscreen.onclick = ()=>{
+
+    fullscreen.style.display = "none";
+};
+
+
+// ESC CLOSE
+document.addEventListener("keydown",(e)=>{
+
+    if(e.key === "Escape"){
+        fullscreen.style.display = "none";
+    }
+});
+
+
+// DOWNLOAD
+downloadBtn.onclick = ()=>{
+
+    const blob = new Blob(
+        [editor.value],
+        {type:"text/html"}
+    );
+
+    const a = document.createElement("a");
+
+    a.href = URL.createObjectURL(blob);
+
+    a.download = "index.html";
+
+    a.click();
+
+    showToast("HTML Downloaded");
+};
+
+
+// CLOCK
+setInterval(()=>{
+
+    const now = new Date();
+
+    document.getElementById("time")
+    .innerText =
+    now.toLocaleTimeString();
+
+},1000);
+
+</script>
+
 </body>
 </html>
-
