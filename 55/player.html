@@ -1,0 +1,50 @@
+<!-- player.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movie Player</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    background:#000;
+    overflow:hidden;
+}
+
+#playerBox{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+}
+</style>
+</head>
+<body>
+
+<div id="playerBox"></div>
+
+<script>
+// URL se IMDb ID lena
+const params = new URLSearchParams(window.location.search);
+
+const movieID = params.get("id");
+
+// Global variable for player script
+window.movieID = movieID;
+</script>
+
+<!-- Fullscreen External Player -->
+<script src="https://kuldeeptech-ai.github.io/generater/New%20folder/plyrimbd.js"></script>
+
+</body>
+</html>
