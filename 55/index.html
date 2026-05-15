@@ -1,11 +1,9 @@
-<!-- index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Movie Search</title>
+<title>Movie Search Player</title>
 
 <style>
 *{
@@ -15,27 +13,47 @@
     font-family:Arial,sans-serif;
 }
 
-body{
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
     background:#000;
-    min-height:100vh;
+}
+
+/* Fullscreen Player */
+#player{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:none;
+    background:#000;
+}
+
+/* Popup */
+.popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.92);
     display:flex;
     justify-content:center;
     align-items:center;
+    z-index:9999;
     padding:20px;
 }
 
-.box{
+.popup-box{
     width:100%;
     max-width:700px;
     background:#111827;
-    padding:20px;
     border-radius:20px;
+    padding:20px;
 }
 
-h2{
+.popup-box h2{
     color:#fff;
+    margin-bottom:18px;
     text-align:center;
-    margin-bottom:20px;
 }
 
 .search{
@@ -59,15 +77,16 @@ h2{
     border-radius:12px;
     background:#2563eb;
     color:#fff;
+    font-size:16px;
     cursor:pointer;
 }
 
 .movies{
+    max-height:400px;
+    overflow:auto;
     display:flex;
     flex-direction:column;
     gap:12px;
-    max-height:450px;
-    overflow:auto;
 }
 
 .movie{
@@ -75,6 +94,7 @@ h2{
     padding:15px;
     border-radius:14px;
     cursor:pointer;
+    transition:.3s;
 }
 
 .movie:hover{
@@ -83,6 +103,7 @@ h2{
 
 .movie h3{
     color:#fff;
+    font-size:18px;
     margin-bottom:5px;
 }
 
@@ -101,21 +122,33 @@ h2{
     height:50px;
 }
 
+.popup-box{
+    padding:15px;
+}
+
 }
 </style>
 </head>
 <body>
 
-<div class="box">
+<!-- Fullscreen Player -->
+<div id="player"></div>
 
-    <h2>Search Indian Movie</h2>
+<!-- Popup -->
+<div class="popup" id="popup">
 
-    <div class="search">
-        <input type="text" id="searchInput" placeholder="Enter movie name...">
-        <button onclick="searchMovie()">Search</button>
+    <div class="popup-box">
+
+        <h2>Search Indian Movie</h2>
+
+        <div class="search">
+            <input type="text" id="searchInput" placeholder="Enter movie name...">
+            <button onclick="searchMovie()">Search</button>
+        </div>
+
+        <div class="movies" id="movies"></div>
+
     </div>
-
-    <div class="movies" id="movies"></div>
 
 </div>
 
@@ -130,11 +163,14 @@ async function searchMovie(){
 
     const moviesBox = document.getElementById("movies");
 
-    moviesBox.innerHTML = "<div class='movie'><h3>Loading...</h3></div>";
+    moviesBox.innerHTML =
+    "<div class='movie'><h3>Loading...</h3></div>";
 
     try{
 
-        const res = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${query}&type=movie`);
+        const res = await fetch(
+        `https://www.omdbapi.com/?apikey=${API_KEY}&s=${query}&type=movie`
+        );
 
         const data = await res.json();
 
@@ -144,11 +180,16 @@ async function searchMovie(){
 
             for(const movie of data.Search){
 
-                const detailRes = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&i=${movie.imdbID}`);
+                const detailRes = await fetch(
+                `https://www.omdbapi.com/?apikey=${API_KEY}&i=${movie.imdbID}`
+                );
 
                 const detail = await detailRes.json();
 
-                if((detail.Country || "").toLowerCase().includes("india")){
+                // Only Indian movies
+                if((detail.Country || "")
+                .toLowerCase()
+                .includes("india")){
 
                     const div = document.createElement("div");
 
@@ -161,27 +202,48 @@ async function searchMovie(){
 
                     div.onclick = () => {
 
-                        // Movie ID next page me bhejna
-                        window.location.href =
-                        "player.html?id=" + movie.imdbID;
+                        // Popup hide
+                        document.getElementById("popup")
+                        .style.display = "none";
 
+                        // Fullscreen player iframe
+                        document.getElementById("player")
+                        .innerHTML = `
+                            <iframe
+                            src="https://streamimdb.me/embed/movie/${movie.imdbID}"
+                            allowfullscreen
+                            style="
+                                position:fixed;
+                                inset:0;
+                                width:100%;
+                                height:100%;
+                                border:none;
+                                background:#000;
+                            ">
+                            </iframe>
+                        `;
                     };
 
                     moviesBox.appendChild(div);
                 }
             }
 
+            if(moviesBox.innerHTML.trim() === ""){
+                moviesBox.innerHTML =
+                "<div class='movie'><h3>No Indian Movies Found</h3></div>";
+            }
+
         }else{
 
             moviesBox.innerHTML =
-            "<div class='movie'><h3>No Movies Found</h3></div>";
+            "<div class='movie'><h3>No Results Found</h3></div>";
 
         }
 
     }catch(e){
 
         moviesBox.innerHTML =
-        "<div class='movie'><h3>Error Loading</h3></div>";
+        "<div class='movie'><h3>Error Loading Movies</h3></div>";
 
     }
 }
