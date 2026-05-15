@@ -1,0 +1,191 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movie Search</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#000;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.box{
+    width:100%;
+    max-width:700px;
+    background:#111827;
+    padding:20px;
+    border-radius:20px;
+}
+
+h2{
+    color:#fff;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.search{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.search input{
+    flex:1;
+    height:52px;
+    border:none;
+    border-radius:12px;
+    padding:0 15px;
+    font-size:16px;
+}
+
+.search button{
+    width:120px;
+    border:none;
+    border-radius:12px;
+    background:#2563eb;
+    color:#fff;
+    cursor:pointer;
+}
+
+.movies{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    max-height:450px;
+    overflow:auto;
+}
+
+.movie{
+    background:#1f2937;
+    padding:15px;
+    border-radius:14px;
+    cursor:pointer;
+}
+
+.movie:hover{
+    background:#374151;
+}
+
+.movie h3{
+    color:#fff;
+    margin-bottom:5px;
+}
+
+.movie p{
+    color:#9ca3af;
+}
+
+@media(max-width:768px){
+
+.search{
+    flex-direction:column;
+}
+
+.search button{
+    width:100%;
+    height:50px;
+}
+
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+
+    <h2>Search Indian Movie</h2>
+
+    <div class="search">
+        <input type="text" id="searchInput" placeholder="Enter movie name...">
+        <button onclick="searchMovie()">Search</button>
+    </div>
+
+    <div class="movies" id="movies"></div>
+
+</div>
+
+<script>
+const API_KEY = "684fefc5";
+
+async function searchMovie(){
+
+    const query = document.getElementById("searchInput").value;
+
+    if(!query) return;
+
+    const moviesBox = document.getElementById("movies");
+
+    moviesBox.innerHTML = "<div class='movie'><h3>Loading...</h3></div>";
+
+    try{
+
+        const res = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${query}&type=movie`);
+
+        const data = await res.json();
+
+        moviesBox.innerHTML = "";
+
+        if(data.Search){
+
+            for(const movie of data.Search){
+
+                const detailRes = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&i=${movie.imdbID}`);
+
+                const detail = await detailRes.json();
+
+                if((detail.Country || "").toLowerCase().includes("india")){
+
+                    const div = document.createElement("div");
+
+                    div.className = "movie";
+
+                    div.innerHTML = `
+                        <h3>${movie.Title}</h3>
+                        <p>${movie.Year}</p>
+                    `;
+
+                    div.onclick = () => {
+
+                        // Movie ID next page me bhejna
+                        window.location.href =
+                        "player.html?id=" + movie.imdbID;
+
+                    };
+
+                    moviesBox.appendChild(div);
+                }
+            }
+
+        }else{
+
+            moviesBox.innerHTML =
+            "<div class='movie'><h3>No Movies Found</h3></div>";
+
+        }
+
+    }catch(e){
+
+        moviesBox.innerHTML =
+        "<div class='movie'><h3>Error Loading</h3></div>";
+
+    }
+}
+</script>
+
+</body>
+</html>
