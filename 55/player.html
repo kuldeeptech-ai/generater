@@ -1,82 +1,41 @@
-<!-- player.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fullscreen Player</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
 html,body{
+    margin:0;
     width:100%;
     height:100%;
     overflow:hidden;
     background:#000;
 }
 
-/* Fullscreen Player */
-#player-container{
+#player{
     position:fixed;
     inset:0;
     width:100%;
     height:100%;
     background:#000;
 }
-
-/* Loading */
-.loader{
-    position:fixed;
-    inset:0;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#000;
-    color:#fff;
-    font-size:20px;
-    z-index:999;
-}
 </style>
 </head>
 <body>
 
-<div class="loader" id="loader">
-    Loading Player...
-</div>
-
-<!-- Fullscreen Player -->
-<div id="player-container"></div>
+<div id="player"></div>
 
 <script>
-// URL se hidden IMDb ID lena
-const params = new URLSearchParams(window.location.search);
+// Hidden IMDb ID
+const params = new URLSearchParams(location.search);
 
-const movieID = params.get("id") || "";
+window.movieID = params.get("id") || "";
 
-// Hidden global variable
-window.__MOVIE_ID__ = movieID;
-
-// Optional hidden config
-window.playerConfig = {
-    imdb: movieID,
-    container: "player-container"
-};
-
-// Loader hide after player load
-window.addEventListener("load", () => {
-    setTimeout(() => {
-        document.getElementById("loader").style.display = "none";
-    }, 1500);
-});
+// Player container
+window.playerContainer = "player";
 </script>
 
-<!-- External Fullscreen Player Script -->
 <script src="https://kuldeeptech-ai.github.io/generater/New%20folder/plyrimbd.js"></script>
 
 </body>
