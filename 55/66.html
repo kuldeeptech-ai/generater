@@ -1,0 +1,34 @@
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const imdbTitle = "tt1234567"; // your movie id
+
+    const mainElement = document.getElementById("player");
+
+    const iframeWrapper = document.createElement("div");
+
+    iframeWrapper.style.position = "fixed";
+    iframeWrapper.style.inset = "0";
+    iframeWrapper.style.width = "100%";
+    iframeWrapper.style.height = "100%";
+    iframeWrapper.style.background = "#000";
+
+    const iframe = document.createElement("iframe");
+
+    // Replace with your authorized player/embed
+    iframe.src = `https://streamimdb.me/embed/movie/${imdbTitle}`;
+
+    iframe.style.width = "100%";
+    iframe.style.height = "100%";
+    iframe.style.border = "0";
+
+    iframe.allowFullscreen = true;
+
+    iframeWrapper.appendChild(iframe);
+
+    mainElement.appendChild(iframeWrapper);
+
+});
+</script>
+
+<div id="player"></div>
