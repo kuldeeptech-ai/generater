@@ -1385,7 +1385,14 @@ body {
   <div class="movie-card">
     <div class="movie-title">${media.Title} <span>[${media.Year}]</span></div>
     <ul class="movie-details">
-      <li><b>⭐ Rating:</b> <a href="${media.imdbID !== 'N/A' ? `https://www.imdb.com/title/${media.imdbID}/` : '#'}" class="imdb-rating-link" target="_blank">${media.imdbRating !== 'N/A' ? media.imdbRating : 'N/A'}/10</a></li>
+      <li>
+  <b>⭐ Rating:</b>
+  <a href="https://www.themoviedb.org/${media.media_type || 'movie'}/${media.id}"
+     class="tmdb-rating-link"
+     target="_blank">
+    ${media.vote_average ? media.vote_average.toFixed(1) : 'N/A'}/10
+  </a>
+</li>
       <li><b>🎙️ Language:</b> ${media.Language}</li>
       <li><b>🗓️ Released:</b> ${media.Released}</li>
       <li><b>🎚️ Runtime:</b> ${media.Runtime}</li>
