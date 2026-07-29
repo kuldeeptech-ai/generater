@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 iframeWrapper.style.margin = "auto";
 
                 const iframe = document.createElement("iframe");
-                iframe.src = `https://streamimdb.me/embed/movie/${imdbTitle}`;
+                iframe.src = `https://vidsrc.sbs/embed/movie/${imdbTitle}`;
                 iframe.style.position = "absolute";
                 iframe.style.top = "0";
                 iframe.style.left = "0";
